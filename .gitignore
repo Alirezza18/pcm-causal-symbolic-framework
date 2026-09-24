@@ -1,9 +1,10 @@
-# ---- Data (large or regenerable; EnergyPlus campaign outputs stay on Google Drive) ----
-data/raw/
+# ---- Data: raw LHS city files + cleaned harvest are committed;
+#      intermediate Drive outputs (clean/processed/tables/figures/models) are not ----
 data/clean/
 data/processed/
 *.csv
 !data/pcm_results_clean.csv
+!data/raw/*.csv
 
 # ---- Models, predictions, generated outputs ----
 models/

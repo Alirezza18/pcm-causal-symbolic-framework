@@ -15,7 +15,16 @@ EnergyPlus audit of the recommended designs.
 
 ```
 ├── data/
-│   └── pcm_results_clean.csv    # cleaned 3,861-run EnergyPlus harvest (inputs + EUI/IDD/TL)
+│   ├── raw/                     # 8 raw per-city LHS CSVs, 11,988 rows total (EnergyPlus campaign)
+│   │   ├── LHS_Ardebial .csv
+│   │   ├── LHS_Bandarabbas.csv
+│   │   ├── LHS_Bushhr .csv
+│   │   ├── LHS_Hamedan.csv
+│   │   ├── LHS_Kashan .csv
+│   │   ├── LHS_Tehran.csv
+│   │   ├── LHS_rasht.csv
+│   │   └── LHS_tabriz.csv
+│   └── pcm_results_clean.csv    # cleaned, merged 3,861-run harvest (inputs + EUI/IDD/TL + city)
 ├── scripts/                     # 44 numbered scripts, one per notebook cell
 │   ├── cell01_setup_environment.py
 │   ├── cell02_upload_inspect_city_csvs.py
@@ -67,9 +76,15 @@ pip install -r requirements.txt
 python scripts/cell04_clean_audit.py        # ...then each script in numeric order
 ```
 
-Raw per-city LHS CSVs (8 files, `LHS_<city>.csv`) are produced by the EnergyPlus sampling
-campaign and are not redistributed here; the cleaned combined harvest
-(`data/pcm_results_clean.csv`, 3,861 rows) is included for reproducibility from Stage 04 onward.
+Raw per-city LHS CSVs (8 files, `LHS_<city>.csv`, 11,988 rows before cleaning) are included in
+`data/raw/`. Cell 02 uploads/inspects them and Cell 04 cleans them (removing duplicate log rows,
+IDD==EUI wiring glitches, and physically impossible readings) into the 3,861-row dataset that
+matches `data/pcm_results_clean.csv`, so the full pipeline reproduces from the raw campaign
+output to the final tables and figures.
+
+| Raw rows | Duplicates | Wiring glitches | Impossible physics | Clean rows |
+|---|---|---|---|---|
+| 11,988 | 8,116 | 18 | 6 | **3,861** |
 
 ## Design variables (inputs, coded levels)
 
