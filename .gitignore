@@ -1,0 +1,28 @@
+# ---- Data (large or regenerable; EnergyPlus campaign outputs stay on Google Drive) ----
+data/raw/
+data/clean/
+data/processed/
+*.csv
+!data/pcm_results_clean.csv
+
+# ---- Models, predictions, generated outputs ----
+models/
+predictions/
+tables/
+figures/
+logs/
+backup/
+*.joblib
+
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+.venv/
+venv/
+
+# ---- OS / editor ----
+.DS_Store
+Thumbs.db
+desktop.ini
